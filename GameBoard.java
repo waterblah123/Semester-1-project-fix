@@ -43,6 +43,7 @@ public class GameBoard extends JPanel {
                     System.out.print("Yellow ");
                 else
                     System.out.print("Red ");
+                    
                 System.out.println("has won in " + numTurns + " turns.");
 
                 continueGame = false;
@@ -61,10 +62,10 @@ public class GameBoard extends JPanel {
         while (!coindropped) {
             System.out.print("Choose a column 1-7 to drop your coin: ");
             int xVal = Integer.parseInt(sc.nextLine()) - 1; // parseint turns String --> int
-            if (xVal < 0 || xVal > 6) {
-                System.out.println("Please input a valid column value");
+            if (xVal < 0 || xVal > 6) { //if out of bounds
+                System.out.println("Input a valid column value 1-7");
             } else if (!dropCoin(xVal, color)) {
-                System.out.println("Please input a valid column value");
+                System.out.println("Choose a column that is not filled");
             } else {
                 coindropped = true;
             }
@@ -86,7 +87,7 @@ public class GameBoard extends JPanel {
         super.repaint(); // don't worry about this -- it 'clears the screen'
 
         g.setColor(Color.black);
-        g.fillRect(0, 0, windowWidth, windowHeight); // draw a nice black background
+        g.fillRect(0, 0, windowWidth, windowHeight); // draw a black background
 
         drawCage(g);
         drawCoins(g);
@@ -131,7 +132,7 @@ public class GameBoard extends JPanel {
         g.setFont(new Font("Consolas", Font.BOLD, 50));
         if (color == 0) {
             g.setColor(Color.yellow);
-            g.drawString("YELLOWS'S TURN", 190, 140);
+            g.drawString("YELLOW'S TURN", 190, 140);
         } else if (color == 1) {
             g.setColor(Color.red);
             g.drawString("RED'S TURN", 240, 140);
